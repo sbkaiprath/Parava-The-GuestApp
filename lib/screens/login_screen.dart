@@ -130,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           checkBoxValue = value;
                         });
                       }),
-                  Text("Receive Promotional mails from \n from Kerala Tourism.",
+                  Text("Receive Promotional mails from \n Kerala Tourism.",
                       style: Theme.of(context).textTheme.bodyText2),
                 ],
               ),

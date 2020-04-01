@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import '../models/homestay_services.dart';
 
 enum Currently { Open, Closed }
 
@@ -14,6 +15,7 @@ class HomeStayItem {
   bool disableFriendly;
   bool ecoFriendly;
   bool childFriendly;
+  final List<HomestayService> service;
   HomeStayItem(
       {@required this.id,
       @required this.name,
@@ -25,7 +27,8 @@ class HomeStayItem {
       this.ecoFriendly = true,
       @required this.disabIndex,
       @required this.reviewIndex,
-      @required this.susIndex});
+      @required this.susIndex,
+      @required this.service});
 }
 
 class HomeStay with ChangeNotifier {
@@ -42,7 +45,25 @@ class HomeStay with ChangeNotifier {
             "https://img.traveltriangle.com/blog/wp-content/uploads/2018/04/Gitanjali-Homestay-mysore-kb6592.jpg",
         childFriendly: true,
         disableFriendly: false,
-        ecoFriendly: true),
+        ecoFriendly: true,
+        service: [
+          HomestayService(
+              id: "a1",
+              title: "AC Room for 2 people",
+              description:
+                  "An AC spacious room with all the furnitures \n attached bathroom TV,Refriderator with a two court Bed.",
+              amount: 850,
+              imageurl:
+                  "https://pix10.agoda.net/hotelImages/305916/-1/d7e306ab550029b8723ad2e4f1de7752.jpg?s=1024x768"),
+          HomestayService(
+              id: "a2",
+              title: "Non-AC for 3 people",
+              description:
+                  'An Non-AC spacious room with all the furnitures \n attached bathroom TV,Refriderator with a three court Bed.',
+              amount: 800,
+              imageurl:
+                  "https://q-cf.bstatic.com/images/hotel/max1024x768/220/220108778.jpg")
+        ]),
     HomeStayItem(
         id: "k2",
         name: "New Villa Residency",
@@ -55,7 +76,25 @@ class HomeStay with ChangeNotifier {
         susIndex: 3.8,
         childFriendly: false,
         disableFriendly: true,
-        ecoFriendly: false),
+        ecoFriendly: false,
+        service: [
+          HomestayService(
+              id: "a3",
+              title: "AC Room for 2 people",
+              description:
+                  "An AC spacious room with all the furnitures \n attached bathroom TV,Refriderator with a two court Bed.",
+              amount: 850,
+              imageurl:
+                  "https://pix10.agoda.net/hotelImages/305916/-1/d7e306ab550029b8723ad2e4f1de7752.jpg?s=1024x768"),
+          HomestayService(
+              id: "a4",
+              title: "Non-AC for 3 people",
+              description:
+                  'An Non-AC spacious room with all the furnitures \n attached bathroom TV,Refriderator with a three court Bed.',
+              amount: 800,
+              imageurl:
+                  "https://q-cf.bstatic.com/images/hotel/max1024x768/220/220108778.jpg")
+        ]),
     HomeStayItem(
         id: "k3",
         name: "WhiteField Resorts",
@@ -68,7 +107,25 @@ class HomeStay with ChangeNotifier {
         susIndex: 4.5,
         childFriendly: true,
         disableFriendly: false,
-        ecoFriendly: false),
+        ecoFriendly: false,
+        service: [
+          HomestayService(
+              id: "a5",
+              title: "AC Room for 2 people",
+              description:
+                  "An AC spacious room with all the furnitures \n attached bathroom TV,Refriderator with a two court Bed.",
+              amount: 850,
+              imageurl:
+                  "https://pix10.agoda.net/hotelImages/305916/-1/d7e306ab550029b8723ad2e4f1de7752.jpg?s=1024x768"),
+          HomestayService(
+              id: "a6",
+              title: "Non-AC for 3 people",
+              description:
+                  'An Non-AC spacious room with all the furnitures \n attached bathroom TV,Refriderator with a three court Bed.',
+              amount: 800,
+              imageurl:
+                  "https://q-cf.bstatic.com/images/hotel/max1024x768/220/220108778.jpg")
+        ]),
     HomeStayItem(
         id: "k4",
         name: "Venu's Homestays",
@@ -81,7 +138,25 @@ class HomeStay with ChangeNotifier {
         susIndex: 3.2,
         childFriendly: true,
         disableFriendly: true,
-        ecoFriendly: false),
+        ecoFriendly: false,
+        service: [
+          HomestayService(
+              id: "a7",
+              title: "AC Room for 2 people",
+              description:
+                  "An AC spacious room with all the furnitures \n attached bathroom TV,Refriderator with a two court Bed.",
+              amount: 850,
+              imageurl:
+                  "https://pix10.agoda.net/hotelImages/305916/-1/d7e306ab550029b8723ad2e4f1de7752.jpg?s=1024x768"),
+          HomestayService(
+              id: "a8",
+              title: "Non-AC for 3 people",
+              description:
+                  'An Non-AC spacious room with all the furnitures \n attached bathroom TV,Refriderator with a three court Bed.',
+              amount: 800,
+              imageurl:
+                  "https://q-cf.bstatic.com/images/hotel/max1024x768/220/220108778.jpg")
+        ]),
     HomeStayItem(
         id: "k5",
         name: "Korans Homestays",
@@ -94,7 +169,25 @@ class HomeStay with ChangeNotifier {
         susIndex: 3.8,
         childFriendly: true,
         disableFriendly: false,
-        ecoFriendly: true)
+        ecoFriendly: true,
+        service: [
+          HomestayService(
+              id: "a9",
+              title: "AC Room for 2 people",
+              description:
+                  "An AC spacious room with all the furnitures \n attached bathroom TV,Refriderator with a two court Bed.",
+              amount: 850,
+              imageurl:
+                  "https://pix10.agoda.net/hotelImages/305916/-1/d7e306ab550029b8723ad2e4f1de7752.jpg?s=1024x768"),
+          HomestayService(
+              id: "a10",
+              title: "Non-AC for 3 people",
+              description:
+                  'An Non-AC spacious room with all the furnitures \n attached bathroom TV,Refriderator with a three court Bed.',
+              amount: 800,
+              imageurl:
+                  "https://q-cf.bstatic.com/images/hotel/max1024x768/220/220108778.jpg")
+        ])
   ];
   List<HomeStayItem> get items {
     return [..._items];

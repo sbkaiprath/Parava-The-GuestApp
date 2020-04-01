@@ -3,6 +3,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import '../providers/homestay.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../widgets/homestay_services_list.dart';
 
 class ScreenArguments {
   final String id;
@@ -36,29 +37,29 @@ class _HomestayDetailState extends State<HomestayDetail> {
               fit: BoxFit.cover,
             ),
           ),
-          SingleChildScrollView(
-            child: Container(
-              height: MediaQuery.of(context).size.height * 1,
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 40),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: IconButton(
-                        icon: Icon(
-                          Icons.arrow_back,
-                          size: 35,
-                          color: Colors.deepOrange,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        }),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.18,
-                  ),
-                  Container(
+          Container(
+            height: MediaQuery.of(context).size.height * 1,
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(vertical: 40),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                      icon: Icon(
+                        Icons.arrow_back,
+                        size: 35,
+                        color: Colors.deepOrange,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      }),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.18,
+                ),
+                SingleChildScrollView(
+                  child: Container(
                     height: MediaQuery.of(context).size.height * 0.32,
                     width: MediaQuery.of(context).size.width * 0.85,
                     child: Card(
@@ -244,40 +245,50 @@ class _HomestayDetailState extends State<HomestayDetail> {
                                           fontWeight: FontWeight.bold))
                             ],
                           )
-                          //SizedBox(width: 10,),
-                          /* Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: <Widget>[
-                              RaisedButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Services",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                color: Colors.green,
-                                elevation: 8,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
-                              ),
-                              RaisedButton(
-                                onPressed: () {},
-                                elevation: 8,
-                                child: Text(
-                                  "Reviews",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                color: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
-                              )
-                            ],
-                          )*/
                         ],
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+                !switchValue
+                    ? HomestayServicesList(homeItem.id)
+                    : Container(
+                        height: MediaQuery.of(context).size.height * 0.32,
+                        width: double.infinity,
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 7,
+                            ),
+                            Text(
+                              'Sustainability Index :${homeData.findById(homeItem.id).susIndex.toString()}/5',
+                              style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 7,
+                            ),
+                            Text(
+                                'Review Index :${homeData.findById(homeItem.id).reviewIndex.toString()}/5',
+                                style: TextStyle(
+                                    color: Colors.black54,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold)),
+                            SizedBox(
+                              height: 7,
+                            ),
+                            Text(
+                                'Disability Index :${homeData.findById(homeItem.id).disabIndex.toString()}/5',
+                                style: TextStyle(
+                                    color: Colors.black54,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold))
+                          ],
+                        ),
+                      )
+              ],
             ),
           ),
         ],
