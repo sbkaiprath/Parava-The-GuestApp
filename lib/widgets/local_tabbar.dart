@@ -1,3 +1,5 @@
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
 import '../screens/favorite_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/search_screen.dart';
@@ -36,7 +38,7 @@ class _LocalTabBarState extends State<LocalTabBar> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.home,
+                _selectedIndex == 0 ? Icons.home : MdiIcons.homeOutline,
                 color: Colors.lightBlue,
               ),
               title: Text(
@@ -46,7 +48,7 @@ class _LocalTabBarState extends State<LocalTabBar> {
               )),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.search,
+                _selectedIndex == 1 ? MdiIcons.selectSearch : Icons.search,
                 color: Colors.lightBlue,
               ),
               title: Text(

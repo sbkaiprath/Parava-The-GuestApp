@@ -1,5 +1,7 @@
-import 'package:Parava/screens/homestay_detail_screen.dart';
-
+import './screens/homestay_services_book.dart';
+import './providers/homestay_services.dart';
+import './screens/homestay_detail_screen.dart';
+import './screens/homestay_item_screen.dart';
 import './screens/items_search_screen.dart';
 import './providers/homestay.dart';
 import './providers/items_search.dart';
@@ -22,11 +24,24 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(value: TrendingLocal()),
         ChangeNotifierProvider.value(value: DiscoverLocal()),
-        ChangeNotifierProvider.value(value: TrendingLocalItem()),
+        ChangeNotifierProvider.value(
+            value: TrendingLocalItem(
+                description: null,
+                id: null,
+                imageUrl: null,
+                place: null,
+                title: null)),
         ChangeNotifierProvider.value(
           value: ItemsSearch(),
         ),
-        ChangeNotifierProvider.value(value: HomeStay())
+        ChangeNotifierProvider.value(value: HomeStay()),
+        ChangeNotifierProvider.value(
+            value: HomestayService(
+                id: null,
+                title: null,
+                description: null,
+                amount: null,
+                imageurl: null))
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -36,7 +51,9 @@ class MyApp extends StatelessWidget {
           LocalTabBar.routeName: (context) => LocalTabBar(),
           TrendingDetailItem.routeName: (context) => TrendingDetailItem(),
           ItemSearchScreen.routeName: (context) => ItemSearchScreen(),
-          HomestayDetail.routeName: (context) => HomestayDetail()
+          HomestayDetail.routeName: (context) => HomestayDetail(),
+          HomestayItemScreen.routeName: (context) => HomestayItemScreen(),
+          HomestayServiceBook.routeName: (context) => HomestayServiceBook()
         },
         theme: ThemeData(
             primaryColor: Colors.indigo,

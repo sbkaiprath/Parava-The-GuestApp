@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import '../models/homestay_services.dart';
+import './homestay_services.dart';
 
 enum Currently { Open, Closed }
 
