@@ -22,6 +22,8 @@ dependencies:
   provider: ^4.0.4  
   flutter_launcher_icons: ^0.7.4
   material_design_icons_flutter: 4.0.5045
+  intl: ^0.16.1
+
 
 flutter_icons:
   image_path: "assets/images/parava.png"
