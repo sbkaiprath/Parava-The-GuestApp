@@ -1,7 +1,7 @@
 import 'package:Parava/screens/homestay_detail_screen.dart';
 import 'package:flutter/material.dart';
 import '../providers/homestay.dart';
-
+import '../models/size_config.dart';
 class HomestayScroll extends StatelessWidget {
   final String id;
   final String imageUrl;
@@ -10,12 +10,13 @@ class HomestayScroll extends StatelessWidget {
   HomestayScroll(this.id, this.imageUrl, this.title, this.currently);
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Row(
       children: <Widget>[
         Column(
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(25)),
+              borderRadius: BorderRadius.all(Radius.circular(SizeConfig.blockSizeHorizontal*5)),
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).pushNamed(HomestayDetail.routeName,
@@ -27,8 +28,8 @@ class HomestayScroll extends StatelessWidget {
                     imageUrl,
                     fit: BoxFit.cover,
                   ),
-                  height: MediaQuery.of(context).size.height * 0.18,
-                  width: 145,
+                  height: SizeConfig.blockSizeVertical*18,
+                  width: SizeConfig.blockSizeHorizontal*36,
                 ),
               ),
             ),

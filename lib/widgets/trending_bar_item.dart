@@ -1,13 +1,15 @@
 import 'package:Parava/screens/trending_item_detail_screen.dart';
 import 'package:flutter/material.dart';
+import '../models/size_config.dart';
 
 class TrendingLocalBar extends StatelessWidget {
   final String id;
   final String title;
   final String imageUrl;
-  TrendingLocalBar(this.id,this.imageUrl, this.title);
+  TrendingLocalBar(this.id, this.imageUrl, this.title);
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Column(
       children: <Widget>[
         Row(
@@ -15,34 +17,35 @@ class TrendingLocalBar extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(25)),
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.18,
-                width: 145,
+                height: SizeConfig.blockSizeVertical * 18,
+                width: SizeConfig.blockSizeHorizontal * 35,
                 alignment: Alignment.bottomCenter,
                 child: InkWell(
                   onTap: () {
-                    Navigator.of(context).pushNamed(TrendingDetailItem.routeName,arguments: id);
+                    Navigator.of(context)
+                        .pushNamed(TrendingDetailItem.routeName, arguments: id);
                   },
                   splashColor: Colors.orangeAccent,
                   child: Image.network(
                     imageUrl,
                     fit: BoxFit.fill,
-                    height: MediaQuery.of(context).size.height * 0.18,
-                    width: 145,
+                    height: SizeConfig.blockSizeVertical * 18,
+                    width: SizeConfig.blockSizeHorizontal * 35,
                   ),
                 ),
                 decoration: BoxDecoration(color: Colors.black26),
               ),
             ),
             SizedBox(
-              width: 8,
+              width: SizeConfig.blockSizeHorizontal * 4,
             )
           ],
         ),
         SizedBox(
-          height: 4,
+          height: SizeConfig.blockSizeVertical * 1.5,
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
+        Flexible(
+          fit: FlexFit.tight,
           child: Text(
             title,
             style: TextStyle(

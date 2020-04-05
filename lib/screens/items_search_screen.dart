@@ -1,6 +1,6 @@
 import '../providers/homestay.dart';
 import '../widgets/homestay_scroll_item.dart';
-
+import '../models/size_config.dart';
 import '../providers/items_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,21 +9,23 @@ class ItemSearchScreen extends StatelessWidget {
   static const routeName = '/item-search';
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     final id = ModalRoute.of(context).settings.arguments;
     final itemData = Provider.of<ItemsSearch>(context, listen: false);
     final stayData = Provider.of<HomeStay>(context, listen: false);
+    final appBar = AppBar(
+        title: Text(
+      itemData.findItem(id).title,
+      style: TextStyle(fontFamily: "OpenSans", fontWeight: FontWeight.bold),
+    ));
     return Scaffold(
-      appBar: AppBar(
-          title: Text(
-        itemData.findItem(id).title,
-        style: TextStyle(fontFamily: "OpenSans", fontWeight: FontWeight.bold),
-      )),
+      appBar: appBar,
       body: Column(
         children: <Widget>[
           Stack(
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: SizeConfig.blockSizeVertical * 60,
                 width: double.infinity,
                 // padding: EdgeInsets.all(10),
                 child: Image.network(
@@ -32,7 +34,7 @@ class ItemSearchScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: SizeConfig.blockSizeVertical * 60,
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -43,21 +45,28 @@ class ItemSearchScreen extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: "OpenSans",
                           color: Colors.white70,
-                          fontSize: 67),
+                          fontSize: SizeConfig.blockSizeHorizontal * 16),
                     ),
                   ],
                 ),
               )
             ],
           ),
-          SizedBox(
-            height: 5,
+          Container(
+            height: (SizeConfig.screenHeight - appBar.preferredSize.height)*0.3,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: SizeConfig.blockSizeVertical * 1,
+                ),
+              ],
+            ),
           ),
           Divider(
             color: Colors.grey,
           ),
           SizedBox(
-            width: 8,
+            width: SizeConfig.blockSizeHorizontal * 3,
           ),
           Expanded(
               child: ListView.builder(

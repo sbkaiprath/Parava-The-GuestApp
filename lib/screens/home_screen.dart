@@ -4,12 +4,14 @@ import 'package:provider/provider.dart';
 import '../providers/trending_local.dart';
 import '../widgets/trending_bar_item.dart';
 import '../widgets/discover_bar_item.dart';
+import '../models/size_config.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final trendItem = Provider.of<TrendingLocal>(context);
     final discoverItem = Provider.of<DiscoverLocal>(context);
+    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -61,43 +63,44 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+            SizedBox(
+              height: SizeConfig.blockSizeVertical*1,
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 15),
+              padding: EdgeInsets.only(left: SizeConfig.blockSizeHorizontal*3),
               child: Text(
                 "Trending Local",
                 style: TextStyle(
                     color: Colors.black54,
                     fontFamily: "OpenSans",
-                    fontSize: 23,
+                    fontSize: SizeConfig.blockSizeHorizontal*6,
                     fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
-              height: 4,
+              height: SizeConfig.blockSizeVertical*1,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15),
-              child: Text(
-                  'Explore the ongoing Season varieties.',
+              padding:  EdgeInsets.only(left: SizeConfig.blockSizeHorizontal*3),
+              child: Text('Explore the ongoing Season varieties.',
                   style: TextStyle(
                       fontFamily: "OpenSans",
-                      fontSize: 15,
+                      fontSize: SizeConfig.blockSizeHorizontal*4,
                       color: Colors.grey)),
             ),
             Divider(
               color: Colors.grey,
             ),
             SizedBox(
-              height: 4,
+              height: SizeConfig.blockSizeVertical*1,
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.21,
+              height: SizeConfig.blockSizeVertical*23,
               width: double.infinity,
               child: Row(
                 children: <Widget>[
                   SizedBox(
-                    width: 5,
+                    width: SizeConfig.blockSizeHorizontal*1,
                   ),
                   Expanded(
                     child: ListView.builder(
@@ -114,21 +117,21 @@ class HomeScreen extends StatelessWidget {
             ),
             Divider(color: Colors.grey),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
+              height:SizeConfig.blockSizeVertical*2,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15),
+              padding:  EdgeInsets.only(left: SizeConfig.blockSizeHorizontal*3),
               child: Text(
                 "Discover Local",
                 style: TextStyle(
                     color: Colors.black54,
                     fontFamily: "OpenSans",
-                    fontSize: 23,
+                    fontSize:  SizeConfig.blockSizeHorizontal*6,
                     fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
-              height: 4,
+              height: SizeConfig.blockSizeVertical*1,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15),
@@ -136,17 +139,17 @@ class HomeScreen extends StatelessWidget {
                   'Checkout out offbeat things to do and get an\n authenthic experiment.',
                   style: TextStyle(
                       fontFamily: "OpenSans",
-                      fontSize: 15,
+                      fontSize: SizeConfig.blockSizeHorizontal*4,
                       color: Colors.grey)),
             ),
             SizedBox(
-              height: 6,
+              height: SizeConfig.blockSizeVertical*1,
             ),
             Row(
               children: <Widget>[
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.44,
-                  width: MediaQuery.of(context).size.width * 1,
+                  height: SizeConfig.blockSizeVertical*34,
+                  width: SizeConfig.screenWidth,
                   child: GridView.builder(
                       padding: EdgeInsets.only(left: 10, right: 10),
                       itemCount: discoverItem.items.length,

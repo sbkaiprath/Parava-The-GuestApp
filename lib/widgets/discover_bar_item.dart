@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-
+import '../models/size_config.dart';
 class DiscoverLocals extends StatelessWidget {
   final String imageUrl;
   final String title;
   DiscoverLocals(this.imageUrl, this.title);
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(45)),
+      borderRadius: BorderRadius.all(Radius.circular(SizeConfig.blockSizeHorizontal*14)),
       child: Card(
         child: InkWell(
           onTap: () {},
@@ -17,7 +18,7 @@ class DiscoverLocals extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        elevation: 3,
+        elevation: 1,
       ),
     )
 
