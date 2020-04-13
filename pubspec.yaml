@@ -57,6 +57,8 @@ flutter:
     - assets/images/kerala-tourism.jpg
     - assets/images/icons8-discount-100.png
     - assets/images/parava.png
+    - assets/images/festival.png
+    - assets/images/fest.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

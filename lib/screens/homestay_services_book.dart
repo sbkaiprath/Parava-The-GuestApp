@@ -22,6 +22,14 @@ class _HomestayServiceBookState extends State<HomestayServiceBook> {
   var _fromController = TextEditingController();
   var _toController = TextEditingController();
   @override
+  void dispose() {
+    _roomController.dispose();
+    _fromController.dispose();
+    _toController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final ScreenArgumentsBook bookNow =
         ModalRoute.of(context).settings.arguments;
@@ -305,7 +313,10 @@ class _HomestayServiceBookState extends State<HomestayServiceBook> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                     onPressed: () {},
-                    child: Text("Submit",style: TextStyle(color: Colors.white),),
+                    child: Text(
+                      "Submit",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                   SizedBox(
                     width: 12,

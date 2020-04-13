@@ -26,7 +26,7 @@ class ItemSearchScreen extends StatelessWidget {
             children: <Widget>[
               Container(
                 height: SizeConfig.blockSizeVertical * 60,
-                width: double.infinity,
+                width: SizeConfig.screenWidth,
                 // padding: EdgeInsets.all(10),
                 child: Image.network(
                   itemData.findItem(id).imageUrl,
@@ -35,7 +35,7 @@ class ItemSearchScreen extends StatelessWidget {
               ),
               Container(
                 height: SizeConfig.blockSizeVertical * 60,
-                width: double.infinity,
+                width: SizeConfig.screenWidth,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
@@ -52,8 +52,7 @@ class ItemSearchScreen extends StatelessWidget {
               )
             ],
           ),
-          Container(
-            height: (SizeConfig.screenHeight - appBar.preferredSize.height)*0.3,
+          SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 SizedBox(
@@ -66,7 +65,7 @@ class ItemSearchScreen extends StatelessWidget {
             color: Colors.grey,
           ),
           SizedBox(
-            width: SizeConfig.blockSizeHorizontal * 3,
+            width: SizeConfig.blockSizeHorizontal * 1,
           ),
           Expanded(
               child: ListView.builder(

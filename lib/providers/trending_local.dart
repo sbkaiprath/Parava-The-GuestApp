@@ -51,4 +51,8 @@ class TrendingLocal with ChangeNotifier {
   TrendingLocalItem findProduct(String id) {
     return _items.firstWhere((trend) => trend.id == id);
   }
+
+  List<TrendingLocalItem> get favoriteItems {
+    return _items.where((items) => items.isFavorite == true);
+  }
 }

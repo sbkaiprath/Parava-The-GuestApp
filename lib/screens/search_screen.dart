@@ -12,6 +12,12 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final _form = GlobalKey<FormState>();
   var _entry = "";
+  final _searchFocusNode = FocusNode();
+  @override
+  void dispose() {
+    _searchFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,9 @@ class _SearchScreenState extends State<SearchScreen> {
             padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal * 4),
             child: TextFormField(
               decoration: InputDecoration(
+                  errorStyle: TextStyle(fontWeight: FontWeight.w300),
                   suffixIcon: IconButton(
+                      focusNode: _searchFocusNode,
                       icon: Icon(
                         Icons.search,
                         color: Colors.grey,
@@ -59,8 +67,15 @@ class _SearchScreenState extends State<SearchScreen> {
                 return null;
               },
               onFieldSubmitted: (value) {
-                _entry = value;
+                final isFinal = _form.currentState.validate();
+                if (!isFinal) {
+                  return;
+                }
+                _form.currentState.save();
+                Navigator.of(context).pushNamed(ItemSearchScreen.routeName,
+                    arguments: itemData.findItemTitle("Stay").id);
               },
+              textInputAction: TextInputAction.go,
             ),
           ),
         ),

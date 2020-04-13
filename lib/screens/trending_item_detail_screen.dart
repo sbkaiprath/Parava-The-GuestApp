@@ -11,7 +11,6 @@ class TrendingDetailItem extends StatelessWidget {
     SizeConfig().init(context);
     final trendingId = ModalRoute.of(context).settings.arguments;
     final trend = Provider.of<TrendingLocal>(context, listen: false);
-    final trends = Provider.of<TrendingLocalItem>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -29,9 +28,12 @@ class TrendingDetailItem extends StatelessWidget {
               width: SizeConfig.screenWidth,
               child: Card(
                 elevation: 5,
-                child: Image.network(
-                  trend.findProduct(trendingId).imageUrl,
-                  fit: BoxFit.cover,
+                child: Hero(
+                  tag: trendingId,
+                  child: Image.network(
+                    trend.findProduct(trendingId).imageUrl,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -72,14 +74,14 @@ class TrendingDetailItem extends StatelessWidget {
                         builder: (ctx, value, child) => IconButton(
                             iconSize: SizeConfig.blockSizeHorizontal * 7,
                             icon: Icon(
-                              trends.isFavorite
+                              value.isFavorite
                                   ? Icons.favorite
                                   : Icons.favorite_border,
                               color: Theme.of(context).primaryColor,
                             ),
                             onPressed: () {
-                              trends.checkFavorite();
-                              print(trends.isFavorite);
+                              value.checkFavorite();
+                              print(value.isFavorite);
                             }),
                       )
                     ],

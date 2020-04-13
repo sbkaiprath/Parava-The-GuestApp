@@ -64,43 +64,45 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(
-              height: SizeConfig.blockSizeVertical*1,
+              height: SizeConfig.blockSizeVertical * 1,
             ),
             Padding(
-              padding: EdgeInsets.only(left: SizeConfig.blockSizeHorizontal*3),
+              padding:
+                  EdgeInsets.only(left: SizeConfig.blockSizeHorizontal * 3),
               child: Text(
                 "Trending Local",
                 style: TextStyle(
                     color: Colors.black54,
                     fontFamily: "OpenSans",
-                    fontSize: SizeConfig.blockSizeHorizontal*6,
+                    fontSize: SizeConfig.blockSizeHorizontal * 6,
                     fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
-              height: SizeConfig.blockSizeVertical*1,
+              height: SizeConfig.blockSizeVertical * 1,
             ),
             Padding(
-              padding:  EdgeInsets.only(left: SizeConfig.blockSizeHorizontal*3),
+              padding:
+                  EdgeInsets.only(left: SizeConfig.blockSizeHorizontal * 3),
               child: Text('Explore the ongoing Season varieties.',
                   style: TextStyle(
                       fontFamily: "OpenSans",
-                      fontSize: SizeConfig.blockSizeHorizontal*4,
+                      fontSize: SizeConfig.blockSizeHorizontal * 4,
                       color: Colors.grey)),
             ),
             Divider(
               color: Colors.grey,
             ),
             SizedBox(
-              height: SizeConfig.blockSizeVertical*1,
+              height: SizeConfig.blockSizeVertical * 1,
             ),
             Container(
-              height: SizeConfig.blockSizeVertical*23,
+              height: SizeConfig.blockSizeVertical * 23,
               width: double.infinity,
               child: Row(
                 children: <Widget>[
                   SizedBox(
-                    width: SizeConfig.blockSizeHorizontal*1,
+                    width: SizeConfig.blockSizeHorizontal * 1,
                   ),
                   Expanded(
                     child: ListView.builder(
@@ -117,21 +119,22 @@ class HomeScreen extends StatelessWidget {
             ),
             Divider(color: Colors.grey),
             SizedBox(
-              height:SizeConfig.blockSizeVertical*2,
+              height: SizeConfig.blockSizeVertical * 2,
             ),
             Padding(
-              padding:  EdgeInsets.only(left: SizeConfig.blockSizeHorizontal*3),
+              padding:
+                  EdgeInsets.only(left: SizeConfig.blockSizeHorizontal * 3),
               child: Text(
                 "Discover Local",
                 style: TextStyle(
                     color: Colors.black54,
                     fontFamily: "OpenSans",
-                    fontSize:  SizeConfig.blockSizeHorizontal*6,
+                    fontSize: SizeConfig.blockSizeHorizontal * 6,
                     fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
-              height: SizeConfig.blockSizeVertical*1,
+              height: SizeConfig.blockSizeVertical * 1,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15),
@@ -139,16 +142,16 @@ class HomeScreen extends StatelessWidget {
                   'Checkout out offbeat things to do and get an\n authenthic experiment.',
                   style: TextStyle(
                       fontFamily: "OpenSans",
-                      fontSize: SizeConfig.blockSizeHorizontal*4,
+                      fontSize: SizeConfig.blockSizeHorizontal * 4,
                       color: Colors.grey)),
             ),
             SizedBox(
-              height: SizeConfig.blockSizeVertical*1,
+              height: SizeConfig.blockSizeVertical * 1,
             ),
             Row(
               children: <Widget>[
                 Container(
-                  height: SizeConfig.blockSizeVertical*34,
+                  height: SizeConfig.blockSizeVertical * 34,
                   width: SizeConfig.screenWidth,
                   child: GridView.builder(
                       padding: EdgeInsets.only(left: 10, right: 10),
@@ -160,6 +163,7 @@ class HomeScreen extends StatelessWidget {
                         mainAxisSpacing: 20,
                       ),
                       itemBuilder: (ctx, index) => DiscoverLocals(
+                          discoverItem.items[index].id,
                           discoverItem.items[index].imageUrl,
                           discoverItem.items[index].title)),
                 ),

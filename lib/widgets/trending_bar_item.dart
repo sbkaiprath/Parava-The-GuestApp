@@ -26,12 +26,21 @@ class TrendingLocalBar extends StatelessWidget {
                         .pushNamed(TrendingDetailItem.routeName, arguments: id);
                   },
                   splashColor: Colors.orangeAccent,
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.fill,
-                    height: SizeConfig.blockSizeVertical * 18,
-                    width: SizeConfig.blockSizeHorizontal * 35,
-                  ),
+                  child: Hero(
+                      tag: id,
+                      child: FadeInImage(
+                        placeholder: AssetImage("assets/images/fest.png"),
+                        image: NetworkImage(imageUrl),
+                        height: SizeConfig.blockSizeVertical * 18,
+                        width: SizeConfig.blockSizeHorizontal * 35,
+                        fit: BoxFit.fill,
+                      ) /*Image.network(
+                      imageUrl,
+                      fit: BoxFit.cover,
+                      height: SizeConfig.blockSizeVertical * 18,
+                      width: SizeConfig.blockSizeHorizontal * 35,
+                    ),*/
+                      ),
                 ),
                 decoration: BoxDecoration(color: Colors.black26),
               ),

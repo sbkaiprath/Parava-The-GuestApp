@@ -1,3 +1,5 @@
+import './providers/discover_local_item.dart';
+
 import './screens/homestay_services_book.dart';
 import './providers/homestay_services.dart';
 import './screens/homestay_detail_screen.dart';
@@ -14,6 +16,8 @@ import './screens/login_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import './helpers/custoum_page_route.dart';
+import './screens/discover_local_detail_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,6 +26,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(
+            value: DiscoverLocalItem(
+                id: null, title: null, imageUrl: null, description: null)),
         ChangeNotifierProvider.value(value: TrendingLocal()),
         ChangeNotifierProvider.value(value: DiscoverLocal()),
         ChangeNotifierProvider.value(
@@ -53,11 +60,16 @@ class MyApp extends StatelessWidget {
           ItemSearchScreen.routeName: (context) => ItemSearchScreen(),
           HomestayDetail.routeName: (context) => HomestayDetail(),
           HomestayItemScreen.routeName: (context) => HomestayItemScreen(),
-          HomestayServiceBook.routeName: (context) => HomestayServiceBook()
+          HomestayServiceBook.routeName: (context) => HomestayServiceBook(),
+          DiscoverLocalScreen.routeName: (context) => DiscoverLocalScreen()
         },
         theme: ThemeData(
             primaryColor: Colors.indigo,
             accentColor: Colors.amber,
+            pageTransitionsTheme: PageTransitionsTheme(builders: {
+              TargetPlatform.android: CustomPageTransitionBuilder(),
+              TargetPlatform.iOS: CustomPageTransitionBuilder()
+            }),
             textTheme: TextTheme(
                 caption: TextStyle(
                     fontWeight: FontWeight.bold,
