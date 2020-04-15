@@ -5,6 +5,14 @@ import '../screens/home_screen.dart';
 import '../screens/search_screen.dart';
 import '../screens/user_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+class ScreenNow {
+  final FirebaseUser _user;
+  final GoogleSignIn _googleSignIn;
+  ScreenNow(this._user, this._googleSignIn);
+}
 
 class LocalTabBar extends StatefulWidget {
   static const routeName = "/local-tab";
@@ -14,6 +22,7 @@ class LocalTabBar extends StatefulWidget {
 
 class _LocalTabBarState extends State<LocalTabBar> {
   int _selectedIndex = 0;
+
   List<Widget> _page;
   void _selectPage(int index) {
     setState(() {
@@ -22,9 +31,15 @@ class _LocalTabBarState extends State<LocalTabBar> {
   }
 
   @override
-  void initState() {
-    _page = [HomeScreen(), SearchScreen(), FavoriteScreen(), UserScreen()];
-    super.initState();
+  void didChangeDependencies() {
+    final ScreenNow argz = ModalRoute.of(context).settings.arguments;
+    _page = [
+      HomeScreen(argz._googleSignIn),
+      SearchScreen(),
+      FavoriteScreen(),
+      UserScreen(argz._user)
+    ];
+    super.didChangeDependencies();
   }
 
   @override

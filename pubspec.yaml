@@ -23,6 +23,9 @@ dependencies:
   flutter_launcher_icons: ^0.7.4
   material_design_icons_flutter: 4.0.5045
   intl: ^0.16.1
+  firebase_auth: ^0.15.5+3
+  google_sign_in: ^4.4.1
+  cloud_firestore: ^0.13.4+2
 
 
 flutter_icons:

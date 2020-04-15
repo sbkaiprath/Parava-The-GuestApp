@@ -5,8 +5,11 @@ import '../providers/trending_local.dart';
 import '../widgets/trending_bar_item.dart';
 import '../widgets/discover_bar_item.dart';
 import '../models/size_config.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class HomeScreen extends StatelessWidget {
+ final GoogleSignIn _googleSignIn;
+  HomeScreen(this._googleSignIn);
   @override
   Widget build(BuildContext context) {
     final trendItem = Provider.of<TrendingLocal>(context);
@@ -30,7 +33,10 @@ class HomeScreen extends StatelessWidget {
             ),
             Spacer(),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                _googleSignIn.signOut();
+                  Navigator.of(context).pushReplacementNamed('/');
+              },
               splashColor: Colors.grey,
               child: Row(
                 children: <Widget>[

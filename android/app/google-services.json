@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "560413222740",
+    "firebase_url": "https://parava-1d896.firebaseio.com",
+    "project_id": "parava-1d896",
+    "storage_bucket": "parava-1d896.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560413222740:android:27ef55902e5ef9b4b84ac1",
+        "android_client_info": {
+          "package_name": "com.example.Parava"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560413222740-7etfsofi6ajaf8ql9d0olfg1iko3gkv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiyPaJ3bypw4a1TLroxZpVasQk3GRlpMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560413222740-7etfsofi6ajaf8ql9d0olfg1iko3gkv5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,11 @@
 import 'package:Parava/my_flutter_app_icons.dart';
+
 import '../models/size_config.dart';
 import '../widgets/local_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -11,8 +14,30 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   var checkBoxValue = false;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool isUserSignedIn = false;
+  var _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isLoading = true;
+    checkIfUserIsSignedIn();
+  }
+
+  void checkIfUserIsSignedIn() async {
+    var userSignedIn = await _googleSignIn.isSignedIn();
+
+    setState(() {
+      _isLoading = false;
+      isUserSignedIn = userSignedIn;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(_isLoading);
     SizeConfig().init(context);
     final mediaQuery = MediaQuery.of(context);
     return Scaffold(
@@ -67,48 +92,56 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 5,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: SizeConfig.blockSizeHorizontal * 20,
-                              right: SizeConfig.blockSizeHorizontal * 16),
-                          child: RawMaterialButton(
-                            elevation: 5,
-                            splashColor: Colors.lightBlue,
-                            child: Row(
-                              children: <Widget>[
-                                SizedBox(
-                                  width: SizeConfig.blockSizeHorizontal * 7,
-                                ),
-                                Icon(
-                                  MyFlutterApp.google,
-                                  size: SizeConfig.blockSizeHorizontal * 6,
-                                ),
-                                SizedBox(
-                                  width: SizeConfig.blockSizeHorizontal * 1,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(
-                                      SizeConfig.blockSizeHorizontal * 3),
-                                  child: Text("Continue with Google",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: "OpenSans",
-                                          fontSize:
-                                              SizeConfig.blockSizeHorizontal *
-                                                  4.5,
-                                          color: Colors.black54)),
-                                )
-                              ],
-                            ),
-                            onPressed: () {
+                        _isLoading
+                            ? Center(
+                                child: CircularProgressIndicator(),
+                              )
+                            : Padding(
+                                padding: EdgeInsets.only(
+                                    left: SizeConfig.blockSizeHorizontal * 20,
+                                    right: SizeConfig.blockSizeHorizontal * 16),
+                                child: RawMaterialButton(
+                                  elevation: 5,
+                                  splashColor: Colors.lightBlue,
+                                  child: Row(
+                                    children: <Widget>[
+                                      SizedBox(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 7,
+                                      ),
+                                      Icon(
+                                        MyFlutterApp.google,
+                                        size:
+                                            SizeConfig.blockSizeHorizontal * 6,
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 1,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.all(
+                                            SizeConfig.blockSizeHorizontal * 3),
+                                        child: Text("Continue with Google",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "OpenSans",
+                                                fontSize: SizeConfig
+                                                        .blockSizeHorizontal *
+                                                    4.5,
+                                                color: Colors.black54)),
+                                      )
+                                    ],
+                                  ),
+                                  onPressed: () => onGoogleSignIn(context),
+                                  /*{
                               Navigator.of(context)
                                   .pushReplacementNamed(LocalTabBar.routeName);
-                            },
-                            fillColor: Colors.white70,
-                            shape: StadiumBorder(
-                                side: BorderSide(color: Colors.white70)),
-                          ),
-                        ),
+                            },*/
+                                  fillColor: Colors.white70,
+                                  shape: StadiumBorder(
+                                      side: BorderSide(color: Colors.white70)),
+                                ),
+                              ),
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 2,
                         ),
@@ -217,5 +250,58 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  Future<FirebaseUser> _handleSignIn() async {
+    FirebaseUser user;
+    bool userSignedIn = await _googleSignIn.isSignedIn();
+
+    setState(() {
+      isUserSignedIn = userSignedIn;
+      _isLoading = true;
+    });
+
+    if (isUserSignedIn) {
+      user = await _auth.currentUser();
+      setState(() {
+        _isLoading = false;
+      });
+    } else if (!isUserSignedIn) {
+      final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      setState(() {
+        _isLoading = false;
+      });
+      final AuthCredential credential = GoogleAuthProvider.getCredential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      setState(() {
+        _isLoading = true;
+      });
+      user = (await _auth.signInWithCredential(credential)).user;
+      userSignedIn = await _googleSignIn.isSignedIn();
+      setState(() {
+        isUserSignedIn = userSignedIn;
+        _isLoading = false;
+      });
+    }
+
+    return user;
+  }
+
+  void onGoogleSignIn(BuildContext context) async {
+    FirebaseUser user = await _handleSignIn();
+    if (user == null) {
+      return;
+    }
+    var userSignedIn = await Navigator.of(context).pushReplacementNamed(
+        LocalTabBar.routeName,
+        arguments: ScreenNow(user, _googleSignIn));
+
+    setState(() {
+      isUserSignedIn = userSignedIn == null ? true : false;
+    });
   }
 }
