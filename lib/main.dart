@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './helpers/custoum_page_route.dart';
 import './screens/discover_local_detail_screen.dart';
+import './screens/create_account_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
                 title: null,
                 description: null,
                 amount: null,
-                imageurl: null))
+                imageurl: null)),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -61,7 +62,8 @@ class MyApp extends StatelessWidget {
           HomestayDetail.routeName: (context) => HomestayDetail(),
           HomestayItemScreen.routeName: (context) => HomestayItemScreen(),
           HomestayServiceBook.routeName: (context) => HomestayServiceBook(),
-          DiscoverLocalScreen.routeName: (context) => DiscoverLocalScreen()
+          DiscoverLocalScreen.routeName: (context) => DiscoverLocalScreen(),
+          CreateAccount.routeName: (context) => CreateAccount()
         },
         theme: ThemeData(
             primaryColor: Colors.indigo,

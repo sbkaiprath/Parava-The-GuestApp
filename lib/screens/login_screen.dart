@@ -1,4 +1,5 @@
 import 'package:Parava/my_flutter_app_icons.dart';
+import 'package:Parava/screens/create_account_screen.dart';
 
 import '../models/size_config.dart';
 import '../widgets/local_tabbar.dart';
@@ -37,9 +38,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(_isLoading);
     SizeConfig().init(context);
     final mediaQuery = MediaQuery.of(context);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -178,7 +179,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 )
                               ],
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushReplacementNamed(
+                                  CreateAccount.routeName);
+                            },
                             shape: StadiumBorder(
                                 side: BorderSide(color: Colors.white70)),
                           ),
@@ -245,7 +249,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
