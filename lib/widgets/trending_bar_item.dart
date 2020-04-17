@@ -1,12 +1,11 @@
 import 'package:Parava/screens/trending_item_detail_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../models/size_config.dart';
 
 class TrendingLocalBar extends StatelessWidget {
-  final String id;
-  final String title;
-  final String imageUrl;
-  TrendingLocalBar(this.id, this.imageUrl, this.title);
+  DocumentSnapshot _trendingReferance;
+  TrendingLocalBar(this._trendingReferance);
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -22,15 +21,16 @@ class TrendingLocalBar extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: InkWell(
                   onTap: () {
-                    Navigator.of(context)
-                        .pushNamed(TrendingDetailItem.routeName, arguments: id);
+                    Navigator.of(context).pushNamed(
+                        TrendingDetailItem.routeName,
+                        arguments: _trendingReferance);
                   },
                   splashColor: Colors.orangeAccent,
                   child: Hero(
-                      tag: id,
+                      tag: _trendingReferance['imageUrl'],
                       child: FadeInImage(
                         placeholder: AssetImage("assets/images/fest.png"),
-                        image: NetworkImage(imageUrl),
+                        image: NetworkImage(_trendingReferance['imageUrl']),
                         height: SizeConfig.blockSizeVertical * 18,
                         width: SizeConfig.blockSizeHorizontal * 35,
                         fit: BoxFit.fill,
@@ -56,7 +56,7 @@ class TrendingLocalBar extends StatelessWidget {
         Flexible(
           fit: FlexFit.tight,
           child: Text(
-            title,
+            _trendingReferance['title'],
             style: TextStyle(
               color: Colors.black87,
               fontWeight: FontWeight.w600,

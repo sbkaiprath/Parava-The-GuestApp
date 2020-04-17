@@ -1,3 +1,5 @@
+import 'package:Parava/widgets/favorite_item.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../models/size_config.dart';
 import 'package:provider/provider.dart';
@@ -8,8 +10,7 @@ class DiscoverLocalScreen extends StatelessWidget {
   static const routeName = '/discover';
   @override
   Widget build(BuildContext context) {
-    final discover = Provider.of<DiscoverLocal>(context, listen: false);
-    final id = ModalRoute.of(
+     DocumentSnapshot discoverLocal = ModalRoute.of(
       context,
     ).settings.arguments;
     SizeConfig().init(context);
@@ -24,15 +25,15 @@ class DiscoverLocalScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    discover.findByid(id).title,
+                    discoverLocal['title'],
                     textAlign: TextAlign.start,
                   ),
                 ],
               ),
               background: Hero(
-                tag: id,
+                tag: discoverLocal.documentID,
                 child: Image.network(
-                  discover.findByid(id).imageUrl,
+                  discoverLocal['imageUrl'],
                   fit: BoxFit.cover,
                 ),
               ),
@@ -57,7 +58,7 @@ class DiscoverLocalScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                discover.findByid(id).description,
+               discoverLocal['description'],
                 style: TextStyle(color: Colors.grey),
               ),
             ),
@@ -75,20 +76,7 @@ class DiscoverLocalScreen extends StatelessWidget {
                           fontFamily: "OpenSans", color: Colors.black54),
                     ),
                   ),
-                  Consumer<DiscoverLocalItem>(
-                    builder: (ctx, value, child) => IconButton(
-                        iconSize: SizeConfig.blockSizeHorizontal * 7,
-                        icon: Icon(
-                          value.isFavorite
-                              ? Icons.favorite
-                              : Icons.favorite_border,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        onPressed: () {
-                          value.checkFavorite();
-                          print(value.isFavorite);
-                        }),
-                  )
+                  FavoriteStatus(discoverLocal)
                 ],
               ),
             ),

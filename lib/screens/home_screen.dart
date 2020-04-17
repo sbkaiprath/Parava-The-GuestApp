@@ -1,18 +1,17 @@
 import '../providers/discover_local.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/trending_local.dart';
 import '../widgets/trending_bar_item.dart';
 import '../widgets/discover_bar_item.dart';
 import '../models/size_config.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatelessWidget {
- final GoogleSignIn _googleSignIn;
+  final GoogleSignIn _googleSignIn;
   HomeScreen(this._googleSignIn);
   @override
   Widget build(BuildContext context) {
-    final trendItem = Provider.of<TrendingLocal>(context);
     final discoverItem = Provider.of<DiscoverLocal>(context);
     SizeConfig().init(context);
     return Scaffold(
@@ -35,7 +34,7 @@ class HomeScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 _googleSignIn.signOut();
-                  Navigator.of(context).pushReplacementNamed('/');
+                Navigator.of(context).pushReplacementNamed('/');
               },
               splashColor: Colors.grey,
               child: Row(
@@ -110,16 +109,25 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     width: SizeConfig.blockSizeHorizontal * 1,
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemBuilder: (ctx, index) => TrendingLocalBar(
-                          trendItem.items[index].id,
-                          trendItem.items[index].imageUrl,
-                          trendItem.items[index].title),
-                      itemCount: trendItem.items.length,
-                      scrollDirection: Axis.horizontal,
-                    ),
-                  ),
+                  StreamBuilder<QuerySnapshot>(
+                      stream: Firestore.instance
+                          .collection('trendingLocal')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return Expanded(
+                          child: ListView.builder(
+                            itemBuilder: (ctx, index) => TrendingLocalBar(
+                                snapshot.data.documents[index]),
+                            itemCount: snapshot.data.documents.length,
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        );
+                      }),
                 ],
               ),
             ),
@@ -159,19 +167,29 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   height: SizeConfig.blockSizeVertical * 34,
                   width: SizeConfig.screenWidth,
-                  child: GridView.builder(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      itemCount: discoverItem.items.length,
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        childAspectRatio: 3 / 2,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20,
-                      ),
-                      itemBuilder: (ctx, index) => DiscoverLocals(
-                          discoverItem.items[index].id,
-                          discoverItem.items[index].imageUrl,
-                          discoverItem.items[index].title)),
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: Firestore.instance
+                          .collection('discoverLocal')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return GridView.builder(
+                            padding: EdgeInsets.only(left: 10, right: 10),
+                            itemCount: snapshot.data.documents.length,
+                            gridDelegate:
+                                SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 200,
+                              childAspectRatio: 3 / 2,
+                              crossAxisSpacing: 20,
+                              mainAxisSpacing: 20,
+                            ),
+                            itemBuilder: (ctx, index) => DiscoverLocals(
+                                snapshot.data.documents[index]));
+                      }),
                 ),
               ],
             )

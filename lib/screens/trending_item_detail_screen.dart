@@ -1,7 +1,8 @@
-import '../providers/trending_local.dart';
+import 'package:Parava/widgets/favorite_item.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../providers/trending_local_item.dart';
+
 import '../models/size_config.dart';
 
 class TrendingDetailItem extends StatelessWidget {
@@ -9,8 +10,8 @@ class TrendingDetailItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    final trendingId = ModalRoute.of(context).settings.arguments;
-    final trend = Provider.of<TrendingLocal>(context, listen: false);
+    DocumentSnapshot trendingSnapshot =
+        ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -29,15 +30,15 @@ class TrendingDetailItem extends StatelessWidget {
               child: Card(
                 elevation: 5,
                 child: Hero(
-                  tag: trendingId,
+                  tag: trendingSnapshot['imageUrl'],
                   child: Image.network(
-                    trend.findProduct(trendingId).imageUrl,
+                    trendingSnapshot['imageUrl'],
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
-            Text(trend.findProduct(trendingId).title,
+            Text(trendingSnapshot['title'],
                 style: TextStyle(
                     fontFamily: "OpenSans",
                     fontWeight: FontWeight.bold,
@@ -47,7 +48,7 @@ class TrendingDetailItem extends StatelessWidget {
               height: SizeConfig.blockSizeVertical * 1,
             ),
             Text(
-              "Place : ${trend.findProduct(trendingId).place}",
+              "Place : ${trendingSnapshot['place']}",
               style: Theme.of(context).textTheme.caption,
             ),
             SingleChildScrollView(
@@ -55,7 +56,7 @@ class TrendingDetailItem extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Text(
-                    trend.findProduct(trendingId).description,
+                    trendingSnapshot['description'],
                     style: TextStyle(color: Colors.black54),
                   ),
                   Row(
@@ -70,20 +71,7 @@ class TrendingDetailItem extends StatelessWidget {
                               fontFamily: "OpenSans", color: Colors.black54),
                         ),
                       ),
-                      Consumer<TrendingLocalItem>(
-                        builder: (ctx, value, child) => IconButton(
-                            iconSize: SizeConfig.blockSizeHorizontal * 7,
-                            icon: Icon(
-                              value.isFavorite
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                            onPressed: () {
-                              value.checkFavorite();
-                              print(value.isFavorite);
-                            }),
-                      )
+                      FavoriteStatus(trendingSnapshot)
                     ],
                   )
                 ],

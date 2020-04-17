@@ -8,10 +8,9 @@ import './screens/items_search_screen.dart';
 import './providers/homestay.dart';
 import './providers/items_search.dart';
 import './providers/discover_local.dart';
-import './providers/trending_local.dart';
 import './screens/trending_item_detail_screen.dart';
 import './widgets/local_tabbar.dart';
-import './providers/trending_local_item.dart';
+
 import './screens/login_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -30,15 +29,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
             value: DiscoverLocalItem(
                 id: null, title: null, imageUrl: null, description: null)),
-        ChangeNotifierProvider.value(value: TrendingLocal()),
         ChangeNotifierProvider.value(value: DiscoverLocal()),
-        ChangeNotifierProvider.value(
-            value: TrendingLocalItem(
-                description: null,
-                id: null,
-                imageUrl: null,
-                place: null,
-                title: null)),
         ChangeNotifierProvider.value(
           value: ItemsSearch(),
         ),
