@@ -3,6 +3,7 @@ import 'package:Parava/screens/create_account_screen.dart';
 import '../models/size_config.dart';
 import '../widgets/local_tabbar.dart';
 import 'package:flutter/material.dart';
+import '../services/auth.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -69,88 +70,88 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 5,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: SizeConfig.blockSizeHorizontal * 20,
-                              right: SizeConfig.blockSizeHorizontal * 16),
-                          child: RawMaterialButton(
-                            elevation: 5,
-                            splashColor: Colors.lightBlue,
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: mediaQuery.size.width * 0.18),
+                          child: FlatButton(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: mediaQuery.size.width * 0.025,
+                                vertical: mediaQuery.size.width * 0.025),
+                            shape: StadiumBorder(),
                             child: Row(
-                              children: <Widget>[
-                                SizedBox(
-                                  width: SizeConfig.blockSizeHorizontal * 7,
-                                ),
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
                                 Icon(
                                   MyFlutterApp.google,
-                                  size: SizeConfig.blockSizeHorizontal * 6,
+                                  size: mediaQuery.size.height * 0.035,
                                 ),
                                 SizedBox(
-                                  width: SizeConfig.blockSizeHorizontal * 1,
+                                  width: mediaQuery.size.width * 0.02,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.all(
-                                      SizeConfig.blockSizeHorizontal * 3),
-                                  child: Text("Continue with Google",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: "OpenSans",
-                                          fontSize:
-                                              SizeConfig.blockSizeHorizontal *
-                                                  4.5,
-                                          color: Colors.black54)),
-                                )
+                                Text("Continue with Google",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "OpenSans",
+                                        fontSize:
+                                            SizeConfig.blockSizeHorizontal *
+                                                4.5,
+                                        color: Colors.black54))
                               ],
                             ),
-                            onPressed: () => Navigator.of(context)
-                                .pushReplacementNamed(LocalTabBar.routeName),
-                            fillColor: Colors.white70,
-                            shape: StadiumBorder(
-                                side: BorderSide(color: Colors.white70)),
+                            color: Colors.white70,
+                            onPressed: () => {
+                              signInWithGoogle().then((value) => {
+                                    if (value != null)
+                                      {
+                                        Navigator.of(context)
+                                            .pushReplacementNamed(
+                                                LocalTabBar.routeName)
+                                      }
+                                    else
+                                      {print("error found")}
+                                  })
+                            },
                           ),
                         ),
                         SizedBox(
-                          height: SizeConfig.blockSizeVertical * 2,
+                          height: mediaQuery.size.height * 0.02,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: SizeConfig.blockSizeHorizontal * 20,
-                              right: SizeConfig.blockSizeHorizontal * 16),
-                          child: RawMaterialButton(
-                            elevation: 5,
-                            splashColor: Colors.white70,
-                            child: Row(
-                              children: <Widget>[
-                                SizedBox(
-                                  width: SizeConfig.blockSizeHorizontal * 7,
-                                ),
-                                Icon(
-                                  Icons.supervised_user_circle,
-                                  size: SizeConfig.blockSizeHorizontal * 6,
-                                ),
-                                SizedBox(
-                                  width: SizeConfig.blockSizeHorizontal * 1,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(
-                                      SizeConfig.blockSizeHorizontal * 3),
-                                  child: Text("Create New Account",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: "OpenSans",
-                                          fontSize:
-                                              SizeConfig.blockSizeHorizontal *
-                                                  4.5,
-                                          color: Colors.black54)),
-                                )
-                              ],
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pushReplacementNamed(
-                                  CreateAccount.routeName);
-                            },
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: mediaQuery.size.width * 0.18),
+                          child: FlatButton(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: mediaQuery.size.width * 0.025,
+                                vertical: mediaQuery.size.width * 0.025),
                             shape: StadiumBorder(
                                 side: BorderSide(color: Colors.white70)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.supervised_user_circle,
+                                  size: mediaQuery.size.height * 0.035,
+                                ),
+                                SizedBox(
+                                  width: mediaQuery.size.width * 0.02,
+                                ),
+                                Text("Create New Account",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "OpenSans",
+                                        fontSize:
+                                            SizeConfig.blockSizeHorizontal *
+                                                4.5,
+                                        color: Colors.black54))
+                              ],
+                            ),
+                            color: Colors.transparent,
+                            onPressed: () => {
+                              Navigator.of(context)
+                                  .pushReplacementNamed(CreateAccount.routeName)
+                            },
                           ),
                         ),
                         SizedBox(
