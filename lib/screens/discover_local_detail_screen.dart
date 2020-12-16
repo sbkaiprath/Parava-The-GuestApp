@@ -2,15 +2,12 @@ import 'package:Parava/widgets/favorite_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../models/size_config.dart';
-import 'package:provider/provider.dart';
-import '../providers/discover_local.dart';
-import '../providers/discover_local_item.dart';
 
 class DiscoverLocalScreen extends StatelessWidget {
   static const routeName = '/discover';
   @override
   Widget build(BuildContext context) {
-     DocumentSnapshot discoverLocal = ModalRoute.of(
+    DocumentSnapshot discoverLocal = ModalRoute.of(
       context,
     ).settings.arguments;
     SizeConfig().init(context);
@@ -58,7 +55,7 @@ class DiscoverLocalScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-               discoverLocal['description'],
+                discoverLocal['description'],
                 style: TextStyle(color: Colors.grey),
               ),
             ),

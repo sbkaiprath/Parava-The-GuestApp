@@ -1,17 +1,14 @@
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
 import '../screens/favorite_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/search_screen.dart';
 import '../screens/user_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 
 class ScreenNow {
-  final FirebaseUser _user;
-  final GoogleSignIn _googleSignIn;
-  ScreenNow(this._user, this._googleSignIn);
+  //final FirebaseUser _user;
+  ScreenNow(/*this._user*/);
 }
 
 class LocalTabBar extends StatefulWidget {
@@ -34,10 +31,10 @@ class _LocalTabBarState extends State<LocalTabBar> {
   void didChangeDependencies() {
     final ScreenNow argz = ModalRoute.of(context).settings.arguments;
     _page = [
-      HomeScreen(argz._googleSignIn),
+      HomeScreen(),
       SearchScreen(),
       FavoriteScreen(),
-      UserScreen(argz._user)
+      UserScreen(/*argz._user*/)
     ];
     super.didChangeDependencies();
   }

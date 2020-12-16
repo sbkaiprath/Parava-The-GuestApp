@@ -1,5 +1,3 @@
-import './providers/discover_local_item.dart';
-
 import './screens/homestay_services_book.dart';
 import './providers/homestay_services.dart';
 import './screens/homestay_detail_screen.dart';
@@ -7,7 +5,6 @@ import './screens/homestay_item_screen.dart';
 import './screens/items_search_screen.dart';
 import './providers/homestay.dart';
 import './providers/items_search.dart';
-import './providers/discover_local.dart';
 import './screens/trending_item_detail_screen.dart';
 import './widgets/local_tabbar.dart';
 
@@ -26,10 +23,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(
-            value: DiscoverLocalItem(
-                id: null, title: null, imageUrl: null, description: null)),
-        ChangeNotifierProvider.value(value: DiscoverLocal()),
         ChangeNotifierProvider.value(
           value: ItemsSearch(),
         ),
