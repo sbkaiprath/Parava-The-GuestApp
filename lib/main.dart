@@ -7,16 +7,16 @@ import './providers/homestay.dart';
 import './providers/items_search.dart';
 import './screens/trending_item_detail_screen.dart';
 import './widgets/local_tabbar.dart';
-
 import './screens/login_screen.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './helpers/custoum_page_route.dart';
 import './screens/discover_local_detail_screen.dart';
 import './screens/create_account_screen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
