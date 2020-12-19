@@ -29,6 +29,8 @@ dependencies:
   firebase_core: ^0.5.3
 
 
+
+
 flutter_icons:
   image_path: "assets/images/parava.png"
   ios: true

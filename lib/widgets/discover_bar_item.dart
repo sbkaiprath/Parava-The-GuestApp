@@ -10,8 +10,8 @@ class DiscoverLocals extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return ClipRRect(
-      borderRadius: BorderRadius.all(
-          Radius.circular(SizeConfig.blockSizeHorizontal * 14)),
+     borderRadius: BorderRadius.all(
+    Radius.circular(SizeConfig.blockSizeHorizontal*5)),
       child: Card(
         child: InkWell(
           onTap: () {
@@ -23,11 +23,12 @@ class DiscoverLocals extends StatelessWidget {
             tag: discoverLocal.documentID,
             child: Image.network(
               discoverLocal['imageUrl'],
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
+              
             ),
           ),
         ),
-        elevation: 1,
+        elevation:1,
       ),
     )
 

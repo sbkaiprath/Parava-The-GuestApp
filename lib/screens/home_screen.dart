@@ -153,7 +153,7 @@ class HomeScreen extends StatelessWidget {
                       color: Colors.grey)),
             ),
             SizedBox(
-              height: SizeConfig.blockSizeVertical * 1,
+              height: SizeConfig.blockSizeVertical * 3,
             ),
             Row(
               children: <Widget>[

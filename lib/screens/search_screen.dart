@@ -29,53 +29,56 @@ class _SearchScreenState extends State<SearchScreen> {
         SizedBox(
           height: SizeConfig.blockSizeVertical * 4,
         ),
-        Form(
-          key: _form,
-          child: Padding(
-            padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal * 4),
-            child: TextFormField(
-              decoration: InputDecoration(
-                  errorStyle: TextStyle(fontWeight: FontWeight.w300),
-                  suffixIcon: IconButton(
-                      focusNode: _searchFocusNode,
-                      icon: Icon(
-                        Icons.search,
-                        color: Colors.grey,
-                      ),
-                      onPressed: () {
-                        final isFinal = _form.currentState.validate();
-                        if (!isFinal) {
-                          return;
-                        }
-                        _form.currentState.save();
-                        Navigator.of(context).pushNamed(
-                            ItemSearchScreen.routeName,
-                            arguments: itemData.findItemTitle("Stay").id);
-                      }),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(
-                        SizeConfig.blockSizeHorizontal * 10),
-                  ),
-                  hintText: "Search for places, destinations and vehicles"),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "Please enter the item";
-                }
-                if (value.toLowerCase() != "stay") {
-                  return "Invalid Entry";
-                }
-                return null;
-              },
-              onFieldSubmitted: (value) {
-                final isFinal = _form.currentState.validate();
-                if (!isFinal) {
-                  return;
-                }
-                _form.currentState.save();
-                Navigator.of(context).pushNamed(ItemSearchScreen.routeName,
-                    arguments: itemData.findItemTitle("Stay").id);
-              },
-              textInputAction: TextInputAction.go,
+        Container(
+          margin: EdgeInsets.only(top:5),
+          child: Form(
+            key: _form,
+            child: Padding(
+              padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal * 4),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    errorStyle: TextStyle(fontWeight: FontWeight.w300),
+                    suffixIcon: IconButton(
+                        focusNode: _searchFocusNode,
+                        icon: Icon(
+                          Icons.search,
+                          color: Colors.grey,
+                        ),
+                        onPressed: () {
+                          final isFinal = _form.currentState.validate();
+                          if (!isFinal) {
+                            return;
+                          }
+                          _form.currentState.save();
+                          Navigator.of(context).pushNamed(
+                              ItemSearchScreen.routeName,
+                              arguments: itemData.findItemTitle("Stay").id);
+                        }),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(
+                          SizeConfig.blockSizeHorizontal * 10),
+                    ),
+                    hintText: "Search for places, destinations and vehicles"),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Please enter the item";
+                  }
+                  if (value.toLowerCase() != "stay") {
+                    return "Invalid Entry";
+                  }
+                  return null;
+                },
+                onFieldSubmitted: (value) {
+                  final isFinal = _form.currentState.validate();
+                  if (!isFinal) {
+                    return;
+                  }
+                  _form.currentState.save();
+                  Navigator.of(context).pushNamed(ItemSearchScreen.routeName,
+                      arguments: itemData.findItemTitle("Stay").id);
+                },
+                textInputAction: TextInputAction.go,
+              ),
             ),
           ),
         ),
