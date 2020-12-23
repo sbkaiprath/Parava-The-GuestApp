@@ -9,58 +9,63 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: <Widget>[
-            Image.asset("assets/images/parava.png", height: 35, width: 35),
-            Padding(
-              padding: const EdgeInsets.all(2),
-              child: Text(
-                "Parava",
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontFamily: "Rosheila",
-                  fontSize: 25,
-                ),
-              ),
-            ),
-            Spacer(),
-            InkWell(
-              onTap: () {
-                Navigator.of(context).pushReplacementNamed('/');
-              },
-              splashColor: Colors.grey,
-              child: Row(
-                children: <Widget>[
-                  Image.asset(
-                    "assets/images/icons8-discount-100.png",
-                    height: 35,
-                    width: 35,
-                  ),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  Text(
-                    "Offers",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 18),
-                  ),
-                  SizedBox(
-                    width: 6,
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: Colors.white,
-      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+            Row(
+              children: <Widget>[
+                Image.asset("assets/images/parava.png", height: 35, width: 35),
+                Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    "Parava",
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontFamily: "Rosheila",
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
+                Spacer(),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushReplacementNamed('/');
+                  },
+                  splashColor: Colors.grey,
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/images/icons8-discount-100.png",
+                        height: 35,
+                        width: 35,
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Text(
+                        "Offer",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 18),
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Divider(
+              color: Colors.grey,
+              indent: 10,
+              endIndent: 10,
+            ),
             SizedBox(
               height: SizeConfig.blockSizeVertical * 1,
             ),

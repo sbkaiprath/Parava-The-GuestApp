@@ -29,13 +29,7 @@ class _LocalTabBarState extends State<LocalTabBar> {
 
   @override
   void didChangeDependencies() {
-    final ScreenNow argz = ModalRoute.of(context).settings.arguments;
-    _page = [
-      HomeScreen(),
-      SearchScreen(),
-      FavoriteScreen(),
-      UserScreen(/*argz._user*/)
-    ];
+    _page = [HomeScreen(), SearchScreen(), HomePage(), UserScreen()];
     super.didChangeDependencies();
   }
 
