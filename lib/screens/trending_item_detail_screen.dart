@@ -59,20 +59,36 @@ class TrendingDetailItem extends StatelessWidget {
                     trendingSnapshot['description'],
                     style: TextStyle(color: Colors.black54),
                   ),
-                  Row(
-                    children: <Widget>[
-                      Spacer(),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            right: SizeConfig.blockSizeHorizontal * 5),
-                        child: Text(
-                          "Add to Favorites",
-                          style: TextStyle(
-                              fontFamily: "OpenSans", color: Colors.black54),
+                  SizedBox(
+                    height:30
+                  ),
+                  Container(
+           alignment: Alignment.center,
+          decoration: BoxDecoration(
+    border: Border.all(
+      color: Colors.indigo[500],
+     
+    ),
+    borderRadius: BorderRadius.all(Radius.circular(25)),
+  
+  ),
+
+                    child: Row(
+                      mainAxisAlignment:MainAxisAlignment.center,
+                      children: <Widget>[
+               
+                        Padding(
+                          padding: EdgeInsets.only(
+                              right: SizeConfig.blockSizeHorizontal * 5),
+                          child: Text(
+                            "Add to Favorites",
+                            style: TextStyle(
+                                fontFamily: "OpenSans", color: Colors.black54),
+                          ),
                         ),
-                      ),
-                      FavoriteStatus(trendingSnapshot)
-                    ],
+                        FavoriteStatus(trendingSnapshot)
+                      ],
+                    ),
                   )
                 ],
               ),

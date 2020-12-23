@@ -61,10 +61,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             "Hello there,\nSwagatham.!",
                             style: TextStyle(
-                                fontSize: SizeConfig.blockSizeHorizontal * 11,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white70,
-                                fontFamily: "Quicksand"),
+                              fontSize: SizeConfig.blockSizeHorizontal * 11,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white70,
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -92,7 +92,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontFamily: "OpenSans",
                                         fontSize:
                                             SizeConfig.blockSizeHorizontal *
                                                 4.5,
@@ -140,7 +139,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontFamily: "OpenSans",
                                         fontSize:
                                             SizeConfig.blockSizeHorizontal *
                                                 4.5,
@@ -171,7 +169,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(
                                 "Receive Promotional mails from \n Kerala Tourism.",
                                 style: TextStyle(
-                                    fontFamily: "OpenSans",
                                     fontSize:
                                         SizeConfig.blockSizeHorizontal * 4,
                                     color: Colors.white70)),
@@ -189,7 +186,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               Text(
                                 "More Options",
                                 style: TextStyle(
-                                    fontFamily: "OpenSans",
                                     fontSize:
                                         SizeConfig.blockSizeHorizontal * 5,
                                     color: Colors.white70),
@@ -202,7 +198,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Text(
                                   "By tapping Continue a User linked agreements and must click 'Agree and Continue' \nbox with further makes it clear to the user that an agreement has taken place.",
                                   style: TextStyle(
-                                      fontFamily: "OpenSans",
                                       fontSize:
                                           SizeConfig.blockSizeHorizontal * 4,
                                       color: Colors.white70),

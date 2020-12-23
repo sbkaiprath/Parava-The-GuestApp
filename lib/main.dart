@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
           CreateAccount.routeName: (context) => CreateAccount()
         },
         theme: ThemeData(
+            fontFamily: 'Ubuntu',
             primaryColor: Colors.indigo,
             accentColor: Colors.amber,
             pageTransitionsTheme: PageTransitionsTheme(builders: {
@@ -59,17 +60,10 @@ class MyApp extends StatelessWidget {
             textTheme: TextTheme(
                 caption: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontFamily: "OpenSans",
                     fontSize: 17,
                     color: Colors.black54),
-                bodyText1: TextStyle(
-                    fontFamily: "OpenSans",
-                    fontSize: 20,
-                    color: Colors.white70),
-                bodyText2: TextStyle(
-                    fontFamily: "OpenSans",
-                    fontSize: 15,
-                    color: Colors.white70))),
+                bodyText1: TextStyle(fontSize: 20, color: Colors.white70),
+                bodyText2: TextStyle(fontSize: 15, color: Colors.white70))),
       ),
     );
   }

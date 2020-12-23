@@ -49,6 +49,7 @@ class HomeScreen extends StatelessWidget {
                       Text(
                         "Offer",
                         style: TextStyle(
+                            fontFamily: 'Ubuntu',
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                             fontSize: 18),
@@ -76,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                 "Trending Local",
                 style: TextStyle(
                     color: Colors.black54,
-                    fontFamily: "OpenSans",
+                    fontFamily: "Ubuntu",
                     fontSize: SizeConfig.blockSizeHorizontal * 6,
                     fontWeight: FontWeight.bold),
               ),
@@ -140,7 +141,6 @@ class HomeScreen extends StatelessWidget {
                 "Discover Local",
                 style: TextStyle(
                     color: Colors.black54,
-                    fontFamily: "OpenSans",
                     fontSize: SizeConfig.blockSizeHorizontal * 6,
                     fontWeight: FontWeight.bold),
               ),
@@ -153,12 +153,11 @@ class HomeScreen extends StatelessWidget {
               child: Text(
                   'Checkout out offbeat things to do and get an\n authenthic experiment.',
                   style: TextStyle(
-                      fontFamily: "OpenSans",
                       fontSize: SizeConfig.blockSizeHorizontal * 4,
                       color: Colors.grey)),
             ),
             SizedBox(
-              height: SizeConfig.blockSizeVertical * 1,
+              height: SizeConfig.blockSizeVertical * 3,
             ),
             Row(
               children: <Widget>[
