@@ -1,6 +1,5 @@
 import 'package:Parava/screens/homestay_detail_screen.dart';
 import 'package:flutter/material.dart';
-import '../providers/homestay.dart';
 import '../models/size_config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -19,9 +18,8 @@ class HomestayScroll extends StatelessWidget {
                   Radius.circular(SizeConfig.blockSizeHorizontal * 6)),
               child: InkWell(
                 onTap: () {
-                  //Navigator.of(context).pushNamed(HomestayDetail.routeName,
-                  //  arguments: ScreenArguments(
-                  //    _homeitem['id'], _homeitem['currently']));
+                  Navigator.of(context).pushNamed(HomestayDetail.routeName,
+                      arguments: _homeitem);
                 },
                 splashColor: Colors.orange,
                 child: Container(

@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import '../providers/homestay.dart';
 import '../widgets/homestay_scroll_item.dart';
 import '../models/size_config.dart';
 import '../providers/items_search.dart';
@@ -14,7 +12,6 @@ class ItemSearchScreen extends StatelessWidget {
     SizeConfig().init(context);
     final id = ModalRoute.of(context).settings.arguments;
     final itemData = Provider.of<ItemsSearch>(context, listen: false);
-    final stayData = Provider.of<HomeStay>(context, listen: false);
     final appBar = AppBar(
         title: Text(
       itemData.findItem(id).title,

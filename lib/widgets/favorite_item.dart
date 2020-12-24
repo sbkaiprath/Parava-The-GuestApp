@@ -23,7 +23,7 @@ class _FavoriteStatusState extends State<FavoriteStatus> {
           color: Theme.of(context).primaryColor,
         ),
         onPressed: () {
-          Firestore.instance.runTransaction((transaction) async {
+          FirebaseFirestore.instance.runTransaction((transaction) async {
             DocumentSnapshot freshSnap =
                 await transaction.get(widget.snapshot.reference);
             await transaction.update(

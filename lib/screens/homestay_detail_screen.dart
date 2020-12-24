@@ -1,21 +1,11 @@
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../providers/homestay.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../widgets/homestay_services_list.dart';
 import '../models/size_config.dart';
 
-class ScreenArguments {
-  final String id;
-  final Currently currently;
-  ScreenArguments(this.id, this.currently);
-}
-
 class HomestayDetail extends StatefulWidget {
   static const routeName = '/home-detail';
-  DocumentSnapshot _homeItem;
-  HomestayDetail(this._homeItem);
   @override
   _HomestayDetailState createState() => _HomestayDetailState();
 }
@@ -26,7 +16,8 @@ class _HomestayDetailState extends State<HomestayDetail> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    //final ScreenArguments homeItem = ModalRoute.of(context).settings.arguments;
+    final DocumentSnapshot _homeItem =
+        ModalRoute.of(context).settings.arguments;
     //final homeData = Provider.of<HomeStay>(context);
     final check = Card(
       child: Column(
@@ -35,7 +26,7 @@ class _HomestayDetailState extends State<HomestayDetail> {
             height: SizeConfig.blockSizeVertical * 2,
           ),
           Text(
-            widget._homeItem['name'],
+            _homeItem['name'],
             style: TextStyle(
                 color: Colors.black,
                 fontSize: SizeConfig.blockSizeHorizontal * 7,
@@ -44,7 +35,7 @@ class _HomestayDetailState extends State<HomestayDetail> {
           SizedBox(
             height: SizeConfig.blockSizeVertical * 0.8,
           ),
-          Text(widget._homeItem['address'],
+          Text(_homeItem['address'],
               style: TextStyle(
                 color: Colors.grey,
                 fontFamily: "Quicksand",
@@ -53,7 +44,7 @@ class _HomestayDetailState extends State<HomestayDetail> {
           SizedBox(
             height: SizeConfig.blockSizeVertical * 0.8,
           ),
-          Text(widget._homeItem['currently'],
+          Text(_homeItem['currently'],
               style: TextStyle(
                 color: Colors.grey,
                 fontFamily: "Quicksand",
@@ -65,7 +56,7 @@ class _HomestayDetailState extends State<HomestayDetail> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              widget._homeItem['disableFriendly']
+              _homeItem['disableFriendly']
                   ? Column(
                       children: <Widget>[
                         Icon(
@@ -100,7 +91,7 @@ class _HomestayDetailState extends State<HomestayDetail> {
                         )
                       ],
                     ),
-              widget._homeItem['childFriendly']
+              _homeItem['childFriendly']
                   ? Column(
                       children: <Widget>[
                         Icon(
@@ -137,7 +128,7 @@ class _HomestayDetailState extends State<HomestayDetail> {
                         )
                       ],
                     ),
-              widget._homeItem['ecoFriendly']
+              _homeItem['ecoFriendly']
                   ? Column(
                       children: <Widget>[
                         Icon(
@@ -227,7 +218,7 @@ class _HomestayDetailState extends State<HomestayDetail> {
             height: SizeConfig.blockSizeVertical * 45,
             width: double.infinity,
             child: Image.network(
-              widget._homeItem['imageurl'],
+              _homeItem['imageurl'],
               fit: BoxFit.cover,
             ),
           ),
@@ -263,12 +254,12 @@ class _HomestayDetailState extends State<HomestayDetail> {
                             width: MediaQuery.of(context).size.width * 0.85,
                             child: check)),
                 !switchValue
-                    ? widget._homeItem.data()['services']
-                        ? HomestayServicesList(widget._homeItem)
+                    ? _homeItem['services'].length != 0
+                        ? HomestayServicesList(_homeItem)
                         : Center(
                             child: Text(
                               'No Services provided currently',
-                              style: Theme.of(context).textTheme.subtitle1,
+                              style: TextStyle(color: Colors.black),
                             ),
                           )
                     : Container(
@@ -282,7 +273,9 @@ class _HomestayDetailState extends State<HomestayDetail> {
                               height: SizeConfig.blockSizeVertical * 1,
                             ),
                             Text(
-                              'Sustainability Index :${widget._homeItem['susIndex'].toString()}/5',
+                              'Sustainability Index :' +
+                                  _homeItem['susIndex'].toString() +
+                                  '/5',
                               style: TextStyle(
                                   color: Colors.black54,
                                   fontSize:
@@ -293,7 +286,9 @@ class _HomestayDetailState extends State<HomestayDetail> {
                               height: SizeConfig.blockSizeVertical * 1,
                             ),
                             Text(
-                                'Review Index :${widget._homeItem['reviewIndex'].toString()}/5',
+                                'Review Index :' +
+                                    _homeItem['reviewIndex'].toString() +
+                                    '/5',
                                 style: TextStyle(
                                     color: Colors.black54,
                                     fontSize:
@@ -303,7 +298,9 @@ class _HomestayDetailState extends State<HomestayDetail> {
                               height: SizeConfig.blockSizeVertical * 1,
                             ),
                             Text(
-                                'Disability Index :${widget._homeItem['disabledIndex'].toString()}/5',
+                                'Disability Index :' +
+                                    _homeItem['disbledIndex'].toString() +
+                                    '/5',
                                 style: TextStyle(
                                     color: Colors.black54,
                                     fontSize:
