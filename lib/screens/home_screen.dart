@@ -90,7 +90,6 @@ class HomeScreen extends StatelessWidget {
                   EdgeInsets.only(left: SizeConfig.blockSizeHorizontal * 3),
               child: Text('Explore the ongoing Season varieties.',
                   style: TextStyle(
-                      fontFamily: "OpenSans",
                       fontSize: SizeConfig.blockSizeHorizontal * 4,
                       color: Colors.grey)),
             ),
@@ -109,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                     width: SizeConfig.blockSizeHorizontal * 1,
                   ),
                   StreamBuilder<QuerySnapshot>(
-                      stream: Firestore.instance
+                      stream: FirebaseFirestore.instance
                           .collection('trendingLocal')
                           .snapshots(),
                       builder: (context, snapshot) {
@@ -120,9 +119,9 @@ class HomeScreen extends StatelessWidget {
                         }
                         return Expanded(
                           child: ListView.builder(
-                            itemBuilder: (ctx, index) => TrendingLocalBar(
-                                snapshot.data.documents[index]),
-                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (ctx, index) =>
+                                TrendingLocalBar(snapshot.data.docs[index]),
+                            itemCount: snapshot.data.docs.length,
                             scrollDirection: Axis.horizontal,
                           ),
                         );
@@ -165,7 +164,7 @@ class HomeScreen extends StatelessWidget {
                   height: SizeConfig.blockSizeVertical * 34,
                   width: SizeConfig.screenWidth,
                   child: StreamBuilder<QuerySnapshot>(
-                      stream: Firestore.instance
+                      stream: FirebaseFirestore.instance
                           .collection('discoverLocal')
                           .snapshots(),
                       builder: (context, snapshot) {
@@ -176,7 +175,7 @@ class HomeScreen extends StatelessWidget {
                         }
                         return GridView.builder(
                             padding: EdgeInsets.only(left: 10, right: 10),
-                            itemCount: snapshot.data.documents.length,
+                            itemCount: snapshot.data.docs.length,
                             gridDelegate:
                                 SliverGridDelegateWithMaxCrossAxisExtent(
                               maxCrossAxisExtent: 200,
@@ -185,7 +184,7 @@ class HomeScreen extends StatelessWidget {
                               mainAxisSpacing: 20,
                             ),
                             itemBuilder: (ctx, index) =>
-                                DiscoverLocals(snapshot.data.documents[index]));
+                                DiscoverLocals(snapshot.data.docs[index]));
                       }),
                 ),
               ],

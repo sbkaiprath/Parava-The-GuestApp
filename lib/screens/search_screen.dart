@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
           height: SizeConfig.blockSizeVertical * 4,
         ),
         Container(
-          margin: EdgeInsets.only(top:5),
+          margin: EdgeInsets.only(top: 5),
           child: Form(
             key: _form,
             child: Padding(
@@ -91,7 +91,6 @@ class _SearchScreenState extends State<SearchScreen> {
               "Stay",
               style: TextStyle(
                   color: Colors.black54,
-                  fontFamily: "OpenSans",
                   fontSize: SizeConfig.blockSizeHorizontal * 5),
             )),
         FlatButton(

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../providers/homestay.dart';
 import '../widgets/homestay_scroll_item.dart';
 import '../models/size_config.dart';
@@ -68,15 +70,21 @@ class ItemSearchScreen extends StatelessWidget {
             width: SizeConfig.blockSizeHorizontal * 1,
           ),
           Expanded(
-              child: ListView.builder(
-            padding: EdgeInsets.all(8),
-            itemBuilder: (ctx, index) => HomestayScroll(
-                stayData.items[index].id,
-                stayData.items[index].imageUrl,
-                stayData.items[index].name,
-                stayData.items[index].currently),
-            itemCount: stayData.items.length,
-            scrollDirection: Axis.horizontal,
+              child: StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance.collection('stay').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Center(child: CircularProgressIndicator());
+              }
+              return ListView.builder(
+                padding: EdgeInsets.all(8),
+                itemBuilder: (ctx, index) => HomestayScroll(
+                  snapshot.data.docs[index],
+                ),
+                itemCount: snapshot.data.docs.length,
+                scrollDirection: Axis.horizontal,
+              );
+            },
           ))
         ],
       ),

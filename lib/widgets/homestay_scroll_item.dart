@@ -19,14 +19,14 @@ class HomestayScroll extends StatelessWidget {
                   Radius.circular(SizeConfig.blockSizeHorizontal * 6)),
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed(HomestayDetail.routeName,
-                      arguments: ScreenArguments(
-                          _homeitem['id'], _homeitem['currently']));
+                  //Navigator.of(context).pushNamed(HomestayDetail.routeName,
+                  //  arguments: ScreenArguments(
+                  //    _homeitem['id'], _homeitem['currently']));
                 },
                 splashColor: Colors.orange,
                 child: Container(
                   child: Image.network(
-                    _homeitem['imageUrl'],
+                    _homeitem['imageurl'],
                     fit: BoxFit.cover,
                   ),
                   height: SizeConfig.blockSizeVertical * 16,

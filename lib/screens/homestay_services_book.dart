@@ -1,5 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../services/auth.dart';
 
 class ScreenArgumentsBook {
   final String name;
@@ -269,7 +272,19 @@ class _HomestayServiceBookState extends State<HomestayServiceBook> {
                         children: <Widget>[
                           Spacer(),
                           FloatingActionButton.extended(
-                              onPressed: () {},
+                              onPressed: () {
+                                FirebaseFirestore.instance
+                                    .collection("bookings")
+                                    .doc(userId)
+                                    .set({
+                                  "rooms": "john",
+                                  "fromDate": 50,
+                                  "toDate": "example@example.com",
+                                  "total": 'total',
+                                }).then((_) {
+                                  print("success!");
+                                });
+                              },
                               label: Text(
                                 "Pay Now",
                                 style: TextStyle(fontWeight: FontWeight.bold),
