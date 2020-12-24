@@ -53,13 +53,11 @@ class _HomestayServiceBookState extends State<HomestayServiceBook> {
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.58,  
+                height: MediaQuery.of(context).size.height * 0.58,
                 width: double.infinity,
                 padding: const EdgeInsets.all(10),
                 child: Card(
-                  
                   child: Column(
-               
                     children: <Widget>[
                       SizedBox(
                         height: 8,
@@ -68,7 +66,6 @@ class _HomestayServiceBookState extends State<HomestayServiceBook> {
                         "Check Out",
                         style: TextStyle(
                             color: Colors.black,
-                            fontFamily: "Quicksand",
                             fontSize: 33,
                             fontWeight: FontWeight.bold),
                       ),
@@ -79,7 +76,6 @@ class _HomestayServiceBookState extends State<HomestayServiceBook> {
                         bookNow.homestayName,
                         style: TextStyle(
                             color: Colors.black45,
-                            fontFamily: "Quicksand",
                             fontSize: 23,
                             fontWeight: FontWeight.bold),
                       ),
@@ -159,7 +155,7 @@ class _HomestayServiceBookState extends State<HomestayServiceBook> {
                         ),
                       ),
                       SizedBox(
-                        height: 4 ,
+                        height: 4,
                       ),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.12,
@@ -258,21 +254,17 @@ class _HomestayServiceBookState extends State<HomestayServiceBook> {
                             width: 10,
                           ),
                           Text(
-                               
                             "₹ ${total.toString()}",
-                              
                             style: TextStyle(
-
                                 color: Colors.black,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           )
                         ],
                       ),
-                    SizedBox(
-                      height: 10,
-                    ),
-
+                      SizedBox(
+                        height: 10,
+                      ),
                       Row(
                         children: <Widget>[
                           Spacer(),
@@ -301,9 +293,7 @@ class _HomestayServiceBookState extends State<HomestayServiceBook> {
                   style: TextStyle(color: Colors.black54),
                 ),
               ),
-              SizedBox(
-                height:2
-              ),
+              SizedBox(height: 2),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(

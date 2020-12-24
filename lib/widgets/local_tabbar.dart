@@ -37,7 +37,6 @@ class _LocalTabBarState extends State<LocalTabBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(242, 242, 242, 1),
-      drawer: Drawer(),
       body: _page[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
@@ -49,8 +48,7 @@ class _LocalTabBarState extends State<LocalTabBar> {
               ),
               title: Text(
                 "Home",
-                style:
-                    TextStyle(color: Colors.lightBlue, fontFamily: "OpenSans"),
+                style: TextStyle(color: Colors.lightBlue),
               )),
           BottomNavigationBarItem(
               icon: Icon(
@@ -59,8 +57,7 @@ class _LocalTabBarState extends State<LocalTabBar> {
               ),
               title: Text(
                 "Search",
-                style:
-                    TextStyle(color: Colors.lightBlue, fontFamily: "OpenSans"),
+                style: TextStyle(color: Colors.lightBlue),
               )),
           BottomNavigationBarItem(
               icon: Icon(
@@ -69,8 +66,7 @@ class _LocalTabBarState extends State<LocalTabBar> {
               ),
               title: Text(
                 "Favorite",
-                style:
-                    TextStyle(color: Colors.lightBlue, fontFamily: "OpenSans"),
+                style: TextStyle(color: Colors.lightBlue),
               )),
           BottomNavigationBarItem(
               icon: Icon(

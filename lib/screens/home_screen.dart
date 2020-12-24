@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                         width: 4,
                       ),
                       Text(
-                        "Offer",
+                        "Offers",
                         style: TextStyle(
                             fontFamily: 'Ubuntu',
                             fontWeight: FontWeight.bold,
